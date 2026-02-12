@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Biva 👑</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    background:#000;
+    color:#fff;
+    font-family:'Poppins',sans-serif;
+}
+section{
+    padding:80px 20px;
+    text-align:center;
+}
+h1,h2,h3,h4{
+    font-family:'Playfair Display',serif;
+    color:#d4af37;
+}
+p{
+    max-width:900px;
+    margin:20px auto;
+    line-height:1.8;
+    font-size:18px;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.photo{
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    border:6px solid #d4af37;
+    object-fit:cover;
+    box-shadow:0 0 40px rgba(212,175,55,.8);
+    margin:30px 0;
+}
+
+/* CAKE */
+.cake{
+    font-size:120px;
+    cursor:pointer;
+    animation:float 3s infinite ease-in-out;
+}
+@keyframes float{
+    50%{transform:translateY(-20px)}
+}
+
+/* AGE */
+.age-box{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+.age{
+    border:1px solid #d4af37;
+    padding:15px 22px;
+    border-radius:12px;
+    min-width:120px;
+}
+.age h4{
+    font-size:32px;
+    margin-bottom:5px;
+}
+
+/* CARDS */
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    max-width:1000px;
+    margin:auto;
+}
+.card{
+    background:rgba(255,255,255,.05);
+    border:1px solid #d4af37;
+    padding:25px;
+    border-radius:15px;
+}
+
+/* TIMELINE */
+.timeline{
+    max-width:800px;
+    margin:auto;
+    text-align:left;
+}
+.timeline div{
+    border-left:3px solid #d4af37;
+    padding-left:20px;
+    margin:20px 0;
+}
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+    max-width:1000px;
+    margin:auto;
+}
+.gallery img{
+    width:100%;
+    border-radius:15px;
+    border:2px solid #d4af37;
+}
+
+footer{
+    padding:40px;
+    text-align:center;
+    opacity:.7;
+}
+
+/* FIREWORKS */
+canvas{
+    position:fixed;
+    top:0;left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+}
+
+/* 🎉 Happy Birthday Animation */
+.title{
+    font-family:'Playfair Display',serif;
+    font-size:64px;
+    text-align:center;
+    line-height:1.2;
+}
+
+.title span{
+    display:inline-block;
+    opacity:0;
+    animation:fadeUp 1.5s forwards;
+}
+
+.title span:first-child{
+    animation-delay:.3s;
+}
+
+.title .name{
+    color:#d4af37;
+    font-size:72px;
+    letter-spacing:3px;
+    animation-delay:1.2s;
+    text-shadow:0 0 20px rgba(212,175,55,.8);
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ✨ Golden Shine Effect */
+.title .name::after{
+    content:'';
+    display:block;
+    width:100%;
+    height:3px;
+    background:linear-gradient(90deg,transparent,#d4af37,transparent);
+    margin-top:10px;
+    animation:shine 2s infinite;
+}
+
+@keyframes shine{
+    from{opacity:.2}
+    50%{opacity:1}
+    to{opacity:.2}
+}
+
+/* 🎾 Ball Text */
+#ballText{
+    position:fixed;
+    top:100px;
+    left:100px;
+    font-family:'Playfair Display',serif;
+    font-size:60px;
+    color:white;
+    font-weight:700;
+    z-index:9999;
+    white-space:nowrap;
+}
+
+#ballText span{
+    color:#d4af37;
+    text-shadow:0 0 20px rgba(212,175,55,.9);
+}
+
+/* 💎 15 Years Section */
+#fifteen{
+  padding:100px 20px;
+  text-align:center;
+}
+#fifteen h2{
+  font-family:'Playfair Display',serif;
+  color:#d4af37;
+  margin-bottom:50px;
+  font-size:42px;
+}
+
+/* Grid */
+.memories{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:15px;
+  max-width:900px;
+  margin:auto;
+  position:relative;
+}
+
+/* Images */
+.memories img{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:14px;
+  border:2px solid #d4af37;
+  transition:.4s;
+}
+.memories img:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px rgba(212,175,55,.6);
+}
+
+/* Center 15 */
+.number{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:90px;
+  color:#d4af37;
+  grid-column:3;
+  grid-row:2 / span 2;
+  border:2px solid #d4af37;
+  border-radius:20px;
+  box-shadow:0 0 30px rgba(212,175,55,.7);
+}
+
+/* 🎨 Different Styles (same photo, different feel) */
+.m1{filter:brightness(1.1)}
+.m2{filter:grayscale(100%)}
+.m3{filter:sepia(40%)}
+.m4{filter:contrast(1.2)}
+.m5{filter:saturate(1.4)}
+.m6{filter:brightness(.9)}
+.m7{filter:hue-rotate(10deg)}
+.m8{filter:grayscale(60%)}
+.m9{filter:sepia(20%)}
+.m10{filter:contrast(1.4)}
+.m11{filter:saturate(1.6)}
+.m12{filter:brightness(1.2)}
+.m13{filter:hue-rotate(-10deg)}
+.m14{filter:grayscale(30%)}
+
+/* Mobile */
+@media(max-width:768px){
+  .memories{
+    grid-template-columns:repeat(3,1fr);
+  }
+  .number{
+    grid-column:2;
+    grid-row:auto;
+  }
+}
+
+
+/*  */
+/* 🌱 Growing Timeline */
+#growth{
+  padding:100px 20px;
+  text-align:center;
+}
+#growth h2{
+  font-family:'Playfair Display',serif;
+  color:#d4af37;
+  margin-bottom:50px;
+  font-size:40px;
+}
+
+.growth-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+  max-width:900px;
+  margin:auto;
+}
+
+/* Card */
+.g{
+  position:relative;
+}
+.g img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:18px;
+  border:2px solid #d4af37;
+  transition:.4s;
+}
+.g span{
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  background:rgba(0,0,0,.6);
+  padding:5px 10px;
+  border-radius:8px;
+  font-size:13px;
+}
+
+/* 🌈 Age feeling */
+.age1 img{filter:brightness(1.3) saturate(1.4) blur(1px)}
+.age2 img{filter:brightness(1.25) saturate(1.35)}
+.age3 img{filter:brightness(1.2)}
+.age4 img{filter:saturate(1.2)}
+.age5 img{filter:saturate(1.15)}
+.age6 img{filter:contrast(1.1)}
+.age7 img{filter:contrast(1.15)}
+.age8 img{filter:contrast(1.2)}
+.age9 img{filter:sepia(10%)}
+.age10 img{filter:sepia(15%)}
+.age11 img{filter:contrast(1.25)}
+.age12 img{filter:contrast(1.3)}
+.age13 img{filter:saturate(1.3)}
+.age14 img{filter:brightness(0.95) contrast(1.35)}
+.age15 img{filter:brightness(0.9) contrast(1.4) saturate(1.4)}
+
+.g:hover img{
+  transform:scale(1.05);
+  box-shadow:0 0 25px rgba(212,175,55,.6);
+}
+
+/* Mobile */
+@media(max-width:768px){
+  .growth-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 MUSIC -->
+<audio autoplay loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mp3">
+</audio>
+
+<canvas id="fireworks"></canvas>
+
+<!-- HERO -->
+<section class="hero">
+    <h1 class="title">
+        <span>Happy Birthday</span><br>
+        <!-- <span class="name">Tahsina Tasnime Biva</span> -->
+        <span class="name" style="color: wheat;">Biva</span>
+    </h1>
+    <br/>
+    <h3>13 February 2010</h3>
+
+    <img src="Biva.jpg" class="photo" alt="Biva Photo">
+
+    <div class="cake" id="cake">🎂🔥</div>
+    <small>Click cake to blow candle 🎈</small>
+
+    <div id="ballText">Happy Birthday <span>Biva</span></div>
+
+</h1>
+
+</section>
+
+<!-- AGE -->
+<section>
+    <h2>Live Age Counter ⏳</h2><br/>
+    <div class="age-box">
+        <div class="age"><h4 id="years">0</h4>Years</div>
+        <div class="age"><h4 id="months">0</h4>Months</div>
+        <div class="age"><h4 id="days">0</h4>Days</div>
+        <div class="age"><h4 id="hours">0</h4>Hours</div>
+        <div class="age"><h4 id="minutes">0</h4>Minutes</div>
+        <div class="age"><h4 id="seconds">0</h4>Seconds</div>
+    </div>
+</section>
+
+<!-- WISHES -->
+<section>
+    <h2>Birthday Wishes 💌</h2><br/>
+    <div class="cards">
+        <div class="card">May your life shine bright ✨ – Family</div>
+        <div class="card">Always keep smiling 💛 – Chaccu</div>
+        <div class="card">Dream big & stay happy 🌸 – Everyone</div>
+    </div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+    <h2>Life Timeline 🕰️</h2>
+    <div class="timeline">
+        <div><b>2010:</b> Born with love 🌸</div>
+        <div><b>2014:</b> Beautiful memories 💫</div>
+        <div><b>2015:</b> First school day 🎒</div>
+        <div><b>2026:</b> Sweet 16 loading 👑</div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section>
+    <h2>Memories Gallery 📸</h2><br/>
+    <div class="gallery">
+        <img src="1.jpg" style="height: 300px;">
+        <img src="2.jpg" style="height: 300px;">
+        <img src="3.jpg" style="height: 300px;">
+        <img src="4.jpg" style="height: 300px;">
+        <img src="5.jpg" style="height: 300px;">
+        <img src="biva1.jpg" style="height: 300px;">
+        <img src="biva2.jpg" style="height: 300px;">
+        <img src="biva3.jpg" style="height: 300px;">
+    </div>
+</section>
+
+<!-- <section id="fifteen"> -->
+  <!-- <h2>✨ 15 Years • 15 Memories ✨</h2> -->
+
+  <!-- <div class="memories">
+    <img src="biva-main.jpg" class="m m1">
+    <img src="biva-main.jpg" class="m m2">
+    <img src="biva-main.jpg" class="m m3">
+    <img src="biva-main.jpg" class="m m4">
+    <img src="biva-main.jpg" class="m m5">
+    <img src="biva-main.jpg" class="m m6">
+    <img src="biva-main.jpg" class="m m7">
+    <div class="number">15</div>
+    <img src="biva-main.jpg" class="m m8">
+    <img src="biva-main.jpg" class="m m9">
+    <img src="biva-main.jpg" class="m m10">
+    <img src="biva-main.jpg" class="m m11">
+    <img src="biva-main.jpg" class="m m12">
+    <img src="biva-main.jpg" class="m m13">
+    <img src="biva-main.jpg" class="m m14">
+  </div>
+</section> -->
+
+<!-- <section id="growth"> -->
+  <!-- <h2>🌱 Growing With Time – 15 Years Journey</h2> -->
+
+  <!-- <div class="growth-grid"> -->
+    <!-- 15 Years -->
+    <!-- <div class="g age1"><img src="biva-main.jpg"><span>Age 1</span></div>
+    <div class="g age2"><img src="biva-main.jpg"><span>Age 2</span></div>
+    <div class="g age3"><img src="biva-main.jpg"><span>Age 3</span></div>
+
+    <div class="g age4"><img src="biva-main.jpg"><span>Age 4</span></div>
+    <div class="g age5"><img src="biva-main.jpg"><span>Age 5</span></div>
+    <div class="g age6"><img src="biva-main.jpg"><span>Age 6</span></div>
+
+    <div class="g age7"><img src="biva-main.jpg"><span>Age 7</span></div>
+    <div class="g age8"><img src="biva-main.jpg"><span>Age 8</span></div>
+    <div class="g age9"><img src="biva-main.jpg"><span>Age 9</span></div>
+
+    <div class="g age10"><img src="biva-main.jpg"><span>Age 10</span></div>
+    <div class="g age11"><img src="biva-main.jpg"><span>Age 11</span></div>
+    <div class="g age12"><img src="biva-main.jpg"><span>Age 12</span></div>
+
+    <div class="g age13"><img src="biva-main.jpg"><span>Age 13</span></div>
+    <div class="g age14"><img src="biva-main.jpg"><span>Age 14</span></div>
+    <div class="g age15"><img src="biva-main.jpg"><span>Age 15</span></div> -->
+  <!-- </div> -->
+<!-- </section> -->
+
+<!-- SURPRISE -->
+<section>
+    <h2>Special Surprise 🎁</h2>
+    <p>You are loved more than words can say 💖</p>
+</section>
+
+<!-- DUA -->
+<section>
+    <h2>Dua & Blessings 🤲</h2>
+    <p>
+        May Allah grant you a life full of Noor,  
+        Imaan, happiness and success 🌙
+    </p>
+</section>
+
+<footer>
+    Crafted with ❤️ for Tahsina Tasnime Biva
+</footer>
+
+<script>
+// 🎂 Cake candle blow
+document.getElementById("cake").onclick = function(){
+    this.textContent = "🎂";
+};
+
+// ⏳ Correct Live Age Counter (Calendar Based)
+function calculateAge(birthDate){
+    const now = new Date();
+
+    let years = now.getFullYear() - birthDate.getFullYear();
+    let months = now.getMonth() - birthDate.getMonth();
+    let days = now.getDate() - birthDate.getDate();
+
+    if (days < 0) {
+        months--;
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    return { years, months, days };
+}
+
+const birthDate = new Date(2010, 1, 13); // February = 1
+
+setInterval(()=>{
+    const age = calculateAge(birthDate);
+    const now = new Date();
+
+    document.getElementById("years").innerText = age.years;
+    document.getElementById("months").innerText = age.months;
+    document.getElementById("days").innerText = age.days;
+    document.getElementById("hours").innerText = now.getHours();
+    document.getElementById("minutes").innerText = now.getMinutes();
+    document.getElementById("seconds").innerText = now.getSeconds();
+},1000);
+
+// 🎆 Fireworks
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+setInterval(()=>{
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.beginPath();
+    ctx.arc(
+        Math.random()*canvas.width,
+        Math.random()*canvas.height/2,
+        20,
+        0,
+        Math.PI*2
+    );
+    ctx.fillStyle = "#d4af37";
+    ctx.fill();
+},300);
+
+
+// 🎾 Ball-style all-side movement
+const ball = document.getElementById("ballText");
+
+let x = 100;
+let y = 100;
+let dx = 2.2;   // speed X
+let dy = 2.8;   // speed Y
+
+function moveBall(){
+    const w = window.innerWidth - ball.offsetWidth;
+    const h = window.innerHeight - ball.offsetHeight;
+
+    x += dx;
+    y += dy;
+
+    // Bounce from walls
+    if (x <= 0 || x >= w) dx *= -1;
+    if (y <= 0 || y >= h) dy *= -1;
+
+    ball.style.left = x + "px";
+    ball.style.top  = y + "px";
+
+    requestAnimationFrame(moveBall);
+}
+
+moveBall();
+
+</script>
+
+</body>
+</html>
