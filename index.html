@@ -512,6 +512,7 @@ document.getElementById("cake").onclick = function(){
 };
 
 // ⏳ Correct Live Age Counter (Calendar Based)
+// ⏳ Correct Live Age Counter (Midnight based hours)
 function calculateAge(birthDate){
     const now = new Date();
 
@@ -530,21 +531,46 @@ function calculateAge(birthDate){
         months += 12;
     }
 
-    return { years, months, days };
+    // 🔥 Hours since midnight
+    const midnight = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate(),
+        0, 0, 0
+    );
+    const hoursSinceMidnight = Math.floor(
+        (now - midnight) / (1000 * 60 * 60)
+    );
+
+    const minutesSinceMidnight = Math.floor(
+        (now - midnight) / (1000 * 60)
+    ) % 60;
+
+    const secondsSinceMidnight = Math.floor(
+        (now - midnight) / 1000
+    ) % 60;
+
+    return {
+        years,
+        months,
+        days,
+        hours: hoursSinceMidnight,
+        minutes: minutesSinceMidnight,
+        seconds: secondsSinceMidnight
+    };
 }
 
-const birthDate = new Date(2010, 1, 13); // February = 1
+const birthDate = new Date(2010, 1, 13); // Feb = 1
 
 setInterval(()=>{
     const age = calculateAge(birthDate);
-    const now = new Date();
 
-    document.getElementById("years").innerText = age.years;
-    document.getElementById("months").innerText = age.months;
-    document.getElementById("days").innerText = age.days;
-    document.getElementById("hours").innerText = now.getHours();
-    document.getElementById("minutes").innerText = now.getMinutes();
-    document.getElementById("seconds").innerText = now.getSeconds();
+    document.getElementById("years").innerText   = age.years;
+    document.getElementById("months").innerText  = age.months;
+    document.getElementById("days").innerText    = age.days;
+    document.getElementById("hours").innerText   = age.hours;
+    document.getElementById("minutes").innerText = age.minutes;
+    document.getElementById("seconds").innerText = age.seconds;
 },1000);
 
 // 🎆 Fireworks
